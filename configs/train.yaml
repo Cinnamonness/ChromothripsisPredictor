@@ -1,0 +1,34 @@
+# configs/train.yaml
+defaults:
+  - _self_
+
+data:
+  output_formats:
+    - sequence
+  force_reprocess: true
+  data_paths:
+    sv_directories:
+      icgc: "data/raw/icgc/open"
+      tcga: "data/raw/tcga/open"
+    chromothripsis_file: "data/raw/chromothripsis_data.xlsx"
+    mapping_file: "data/raw/pcawg_sample_sheet.tsv"
+  preprocessing:
+    normalize: true
+    sequence_length: 50
+    binarize_labels: true
+    positive_classes: ["1"] 
+
+training:
+  epochs: 200
+  batch_size: 32
+  early_stopping_patience: 15
+  gradient_clip: 1.0
+  learning_rate: 0.001
+  weight_decay: 0.01
+
+model:
+  sequence_model:
+    hidden_dim: 64
+    dropout_rate: 0.3
+    num_layers: 2
+    grad_clip_value: 1.0

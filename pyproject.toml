@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chromothripsis-detection"
+version = "0.1.0"
+description = "Deep learning framework for chromothripsis detection from SV data"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+dependencies = [
+    "torch>=2.0.0",
+    "pandas>=1.5.0",
+    "scikit-learn>=1.2.0",
+    "hydra-core>=1.3.0",
+    "matplotlib>=3.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "pre-commit>=3.0.0",
+]

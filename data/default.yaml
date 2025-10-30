@@ -1,0 +1,30 @@
+defaults:
+  - _self_
+
+data_paths:
+  chromothripsis_file: "data/raw/chromothripsis_data.xlsx"
+  mapping_file: "data/raw/pcawg_sample_sheet.tsv"
+  sv_directories:
+    icgc: "data/raw/icgc/open"
+    tcga: "data/raw/tcga/open"
+
+preprocessing:
+  sequence_length: 1000
+  cnn_width: 224
+  cnn_channels: 6
+  graph_distance_threshold: 1000000
+  
+  binarize_labels: true
+  positive_classes:
+    - "High confidence"
+    - "Linked to high confidence" 
+    - "Linked to low confidence"
+    - "Low confidence"
+
+output_formats: ["sequence", "cnn", "graph"]
+
+split:
+  method: "stratified"
+  val_ratio: 0.2
+  test_ratio: 0.1
+  random_state: 42

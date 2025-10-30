@@ -1,0 +1,51 @@
+defaults:
+  - _self_
+
+data:
+  output_formats:
+    - sequence
+    - advanced_sequence
+    - residual_lstm
+  force_reprocess: false
+  data_paths:
+    sv_directories:
+      icgc: "data/raw/icgc/open"
+      tcga: "data/raw/tcga/open"
+    chromothripsis_file: "data/raw/pcawg_sample_sheet.xlsx"
+    mapping_file: "data/raw/mapping.tsv"
+  preprocessing:
+    normalize: true
+    sequence_length: 200
+    binarize_labels: true
+    positive_classes: ["High confidence", "Linked to high confidence", "Linked to low confidence", "Low confidence"]
+    feature_dim: 22
+  split:
+    val_ratio: 0.15
+    test_ratio: 0.15
+    random_state: 42
+    stratify: true
+
+training:
+  device: "auto"
+  epochs: 150
+  batch_size: 32
+  early_stopping_patience: 20
+  gradient_clip: 1.0
+  learning_rate: 0.0001
+  weight_decay: 0.001
+  use_class_weights: true
+  loss_type: "improved_combined"
+  improved_combined_alpha: 0.8
+  focal_gamma: 3.0
+  use_ema: true
+  ema_decay: 0.995
+  warmup_epochs: 10
+  label_smoothing: 0.1
+
+model:
+  model_type: "advanced_sequence"
+  sequence_model:
+    input_dim: 22
+    hidden_dim: 128
+    num_layers: 2
+    dropout_rate: 0.3

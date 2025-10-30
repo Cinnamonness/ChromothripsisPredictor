@@ -1,0 +1,23 @@
+defaults:
+  - _self_
+
+sequence_model:
+  name: "EnhancedLSTM"
+  input_dim: 8
+  hidden_dim: 64
+  num_layers: 2
+  bidirectional: true
+  dropout: 0.2
+  batch_norm: true
+
+cnn_model:
+  name: "EnhancedCNN" 
+  input_channels: 6
+  num_filters: 128
+  dropout: 0.3
+
+graph_model:
+  name: "SimpleGNN"
+  input_dim: 7
+  hidden_dim: 128
+  dropout: 0.3
